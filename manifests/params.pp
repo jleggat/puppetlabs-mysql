@@ -182,6 +182,32 @@ class mysql::params {
       $daemon_dev_package_name     = undef
     }
 
+    'Darwin': {
+      $client_package_name = undef
+      $server_package_name = undef
+      $basedir             = '/usr/local/mysql'
+      $config_file         = '/etc/my.cnf'
+      $datadir             = '/var/lib/mysql'
+      $log_error           = "/var/log/mysql/${::hostname}.err"
+      $pidfile             = '/var/lib/mysql/mysqld.pid'
+      $root_group          = 'wheel'
+      $server_service_name = 'MySQL'
+      $socket              = '/tmp/mysql.sock'
+      $ssl_ca              = undef
+      $ssl_cert            = undef
+      $ssl_key             = undef
+      $tmpdir              = '/tmp'
+      # mysql::bindings
+      $java_package_name   = undef
+      $perl_package_name   = undef
+      $php_package_name    = undef
+      $python_package_name = undef
+      $ruby_package_name   = undef
+      # The libraries installed by these packages are included in client and server packages, no installation required.
+      $client_dev_package_name     = undef
+      $daemon_dev_package_name     = undef
+    }
+
     default: {
       case $::operatingsystem {
         'Amazon': {
