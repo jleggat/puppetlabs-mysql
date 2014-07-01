@@ -7,8 +7,10 @@ class mysql::params {
   $restart                = false
   $root_password          = 'UNSET'
   $server_package_ensure  = 'present'
+  $server_package_manage  = true
   $server_service_manage  = true
   $server_service_enabled = true
+  $client_package_manage  = true
   $client_package_ensure  = 'present'
   # mysql::bindings
   $bindings_enable             = false

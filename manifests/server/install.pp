@@ -1,9 +1,10 @@
 #
 class mysql::server::install {
-
-  package { 'mysql-server':
-    ensure => $mysql::server::package_ensure,
-    name   => $mysql::server::package_name,
+  if $mysql::server::package_manage {
+	  package { 'mysql-server':
+		ensure => $mysql::server::package_ensure,
+		name   => $mysql::server::package_name,
+	  }
   }
 
 }
