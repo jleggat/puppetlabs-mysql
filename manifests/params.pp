@@ -185,8 +185,8 @@ class mysql::params {
     }
 
     'Darwin': {
-      $client_package_name = undef
-      $server_package_name = undef
+      $client_package_name = 'mysql_client'
+      $server_package_name = 'mysql-server'
       $basedir             = '/usr/local/mysql'
       $config_file         = '/etc/my.cnf'
       $datadir             = '/var/lib/mysql'
@@ -239,7 +239,7 @@ class mysql::params {
         }
 
         default: {
-          fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily RedHat, Debian, and FreeBSD, or operatingsystem Amazon")
+          fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily RedHat, Debian, FreeBSD, and Darwin or operatingsystem Amazon")
         }
       }
     }
@@ -248,6 +248,9 @@ class mysql::params {
   case $::operatingsystem {
     'Ubuntu': {
       $server_service_provider = upstart
+    }
+    'Darwin': {
+      $server_service_provider = base
     }
     default: {
       $server_service_provider = undef
